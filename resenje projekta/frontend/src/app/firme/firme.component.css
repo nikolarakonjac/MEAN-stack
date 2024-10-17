@@ -1,0 +1,101 @@
+/* Navbar styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  /* Search form styling */
+  div label {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  button[type="button"] {
+    background-color: #007BFF;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  table td {
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  ul {
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    table, input[type="text"] {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

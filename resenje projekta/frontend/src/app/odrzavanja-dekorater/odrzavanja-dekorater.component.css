@@ -1,0 +1,104 @@
+/* Navbar button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  table td {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Action buttons in the table */
+  table button {
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  table button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Input field for date and time */
+  input[type="datetime-local"] {
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
+  }
+  
+  input[type="datetime-local"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Headings styling */
+  h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* No requests message */
+  span.no-requests {
+    display: block;
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    table, input[type="datetime-local"] {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

@@ -1,0 +1,54 @@
+<button [routerLink]="['/']">Home</button>  |  
+<button [routerLink]="['/profilVlasnika']">Profil</button>  |  
+<button [routerLink]="['/firme']">Firme</button>  |
+<button [routerLink]="['/zakazivanja']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanje']">Održavanje</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<h3>Završeni poslovi</h3>
+
+<div *ngIf="zavrseniPoslovi.length > 0; else nemaZavrsenihPoslova">
+  <table>
+    <thead>
+      <tr>
+        <th>Kraj radova</th>
+        <th>Detalji</th>
+        <th>Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let z of zavrseniPoslovi">
+        <td>{{z.datumRadova.getFullYear()}}-{{z.datumRadova.getMonth()+1}}-{{z.datumRadova.getDate()}}</td>
+        <td *ngIf="z.tipBaste == 'privatnaBasta'">Br. bazena: {{ z.kvadratura }}</td>
+        <td *ngIf="z.tipBaste == 'bastaRestorana'">Br. fontana: {{ z.kvadratura }}</td>
+        <td *ngIf="hasSixMonthsPassed(z.datumRadova)">
+          <button (click)="servis(z)">Servis</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #nemaZavrsenihPoslova>
+  Nema završenih poslova
+</ng-template>
+
+<h3>Poslovi u procesu održavanja ili čekaju na majstora</h3>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Firma</th>
+        <th>Kvadratura</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of posloviNaServisu">
+        <td>{{p.nazivFirme}}</td>
+        <td>{{p.kvadratura}}</td>
+        <td>{{p.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+
+<h3>Stranica za logovanje admina</h3>
+
+korisnicko ime: <input type="text" name="korisnickoIme" [(ngModel)]="korisnickoIme"> <br>
+lozinka: <input type="password" name="lozinka" [(ngModel)]="lozinka">   <br>
+
+<br>
+
+<button (click)="prijavaNaSistem()">prijava na sistem</button>  <br>
+<br>
+
+<span style="color: red;">{{errorMessage}}</span>

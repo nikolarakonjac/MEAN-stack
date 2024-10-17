@@ -1,0 +1,106 @@
+/* Style for the buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Style for input fields */
+  input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* General container padding */
+  div {
+    padding: 20px;
+  }
+  
+  /* Styling for the hr element */
+  hr {
+    border: 1px solid #4CAF50;
+    margin: 20px 0;
+  }
+  
+  h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Center-align the form and its contents */
+  label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* General page margin */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  ul li {
+    list-style-type: disc;
+  }
+  

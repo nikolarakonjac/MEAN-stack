@@ -1,0 +1,59 @@
+<div class="container">
+    <button [routerLink]="['/login']">Prijavi se</button> 
+    <button [routerLink]="['/registracijaVlasnika']">Registruj se</button>
+  
+    <br><br>
+  
+    <p>Ukupan broj dekorisanih basti: {{brDekorisanihBasti}}</p>
+  
+    <p>Broj registrovanih vlasnika: {{brVlasnika}}</p>
+    <p>Broj registrovanih dekoratera: {{brDekoratera}}</p>
+  
+    <p>Broj zakazanih poslova u poslednja 24 h: {{brojZakazanihPoslova24h}}</p>
+    <p>Broj zakazanih poslova u poslednja 7 dana: {{brojZakazanihPoslova7Dana}}</p>
+    <p>Broj zakazanih poslova u poslednja 30 dana: {{brojZakazanihPoslova30Dana}}</p>
+  
+    <hr>
+  
+    <h3>Spisak svih firmi</h3>
+  
+    <div>
+      <label>Pretrazi firme po nazivu: </label>
+      <input type="text" id="searchNaziv" name="searchNaziv" [(ngModel)]="pretraziNazivFirmeParam">
+      <br>
+      <label>Pretrazi firme po adresi: </label>
+      <input type="text" id="searchAdresu" name="searchAdresu" [(ngModel)]="pretraziAdresuFirmeParam">
+      <button (click)="pretrazi()">Pretrazi</button>
+    </div>
+  
+    <br>
+  
+    <div *ngIf="firme.length > 0; else nemaFirmi">
+      <table>
+        <tr>
+          <th>
+            <button (click)="sortirajFirmeNeopadajucePoNazivu()">Sortiraj neopadajuce</button> <br>
+            <button (click)="sortirajFirmeNerastucePoNazivu()">Sortiraj nerastuce</button> <br>
+            Naziv
+          </th>
+          <th>
+            <button (click)="sortirajFirmeNeopadajucePoAdresi()">Sortiraj neopadajuce</button> <br>
+            <button (click)="sortirajFirmeNerastucePoAdresi()">Sortiraj nerastuce</button> <br>
+            Adresa
+          </th>
+          <th>Angazovani dekorateri</th>
+        </tr>
+        <tr *ngFor="let f of firme">
+          <td>{{f.naziv}}</td>
+          <td>{{f.adresa}}</td>
+          <td>
+            <ul *ngFor="let d of f.dekorateri">
+              <li>{{d.ime}} {{d.prezime}}</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <ng-template #nemaFirmi>Nema firmi</ng-template>
+  </div>
+  

@@ -1,0 +1,28 @@
+<form>
+    <h3>Promena lozinke</h3>
+  
+    <div>
+      <label for="korisnickoIme">Korisničko ime:</label>
+      <input type="text" id="korisnickoIme" name="korisnickoIme" [(ngModel)]="korisnickoIme" required />
+    </div>
+  
+    <div>
+      <label for="staraLozinka">Stara lozinka:</label>
+      <input type="password" id="staraLozinka" name="staraLozinka" [(ngModel)]="staraLozinka" required />
+    </div>
+  
+    <div>
+      <label for="novaLozinka1">Nova lozinka:</label>
+      <input type="password" id="novaLozinka1" name="novaLozinka1" [(ngModel)]="novaLozinka1" required />
+    </div>
+  
+    <div>
+      <label for="novaLozinka2">Ponovite novu lozinku:</label>
+      <input type="password" id="novaLozinka2" name="novaLozinka2" [(ngModel)]="novaLozinka2" required />
+    </div>
+  
+    <button (click)="promeniLozinku()">Promeni lozinku</button>
+  
+    <span *ngIf="error">{{ error }}</span>
+  </form>
+  

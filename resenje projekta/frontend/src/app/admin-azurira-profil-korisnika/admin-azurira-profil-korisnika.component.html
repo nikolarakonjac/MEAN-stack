@@ -1,0 +1,55 @@
+<form>
+    <div>
+      <label for="ime">Ime:</label>
+      <input type="text" id="ime" [(ngModel)]="ulogovaniKorisnik.ime" name="ime" />
+    </div>
+  
+    <div>
+      <label for="prezime">Prezime:</label>
+      <input type="text" id="prezime" [(ngModel)]="ulogovaniKorisnik.prezime" name="prezime" />
+    </div>
+  
+    <div>
+      <label for="adresa">Adresa:</label>
+      <input type="text" id="adresa" [(ngModel)]="ulogovaniKorisnik.adresa" name="adresa" />
+    </div>
+  
+    <div>
+      <label for="mejl">E-mail:</label>
+      <input type="email" id="mejl" [(ngModel)]="ulogovaniKorisnik.mejl" name="mejl" />
+    </div>
+  
+    <div>
+      <label for="telefon">Telefon:</label>
+      <input type="text" id="telefon" [(ngModel)]="ulogovaniKorisnik.telefon" name="telefon" />
+    </div>
+  
+    <div>
+      <label for="kreditnaKartica">Broj kreditne kartice:</label>
+      <input type="text" id="kreditnaKartica" [(ngModel)]="ulogovaniKorisnik.kreditnaKartica" name="kreditnaKartica" (input)="validateCreditCard(ulogovaniKorisnik.kreditnaKartica)" />
+    </div>
+  
+    <div *ngIf="cardType">
+      <img *ngIf="cardType === 'diners'" src="assets/diners.png" alt="Diners Club" width="80" />
+      <img *ngIf="cardType === 'mastercard'" src="assets/mastercard.png" alt="MasterCard" width="80" />
+      <img *ngIf="cardType === 'visa'" src="assets/visa.png" alt="Visa" width="80" />
+    </div>
+  
+    <div>
+      Trenutna profilna slika: <br> <br>
+      <img *ngIf="profilnaSlikaURL" [src]="profilnaSlikaURL" alt="Profilna Slika" width="150" height="150" />
+    </div>
+  
+    <div>
+      <label for="profilnaSlika">Izaberite novu profilnu sliku:</label>
+      <input type="file" id="profilnaSlika" (change)="onFileSelected($event)" accept="image/*" />
+    </div>
+  
+    <br> <br>
+  
+    <button [routerLink]="['/adminPocetna']">Nazad</button>
+    <button (click)="zavrsiAzuriranje()">Završi ažuriranje</button>
+  
+    <span *ngIf="error">{{error}}</span>
+  </form>
+  

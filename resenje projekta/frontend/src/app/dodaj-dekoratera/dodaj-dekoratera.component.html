@@ -1,0 +1,71 @@
+<form (ngSubmit)="onSubmit()" #korisnikForm="ngForm">
+  <div>
+    <label for="korisnickoIme">Korisničko ime:</label>
+    <input type="text" id="korisnickoIme" [(ngModel)]="dekorater.korisnickoIme" name="korisnickoIme" required />
+  </div>
+
+  <div>
+    <label for="lozinka">Lozinka:</label>
+    <input type="password" id="lozinka" [(ngModel)]="dekorater.lozinka" name="lozinka" required />
+    <div *ngIf="errorMessagePassword">{{ errorMessagePassword }}</div>
+  </div>
+
+  <div>
+    <label for="ime">Ime:</label>
+    <input type="text" id="ime" [(ngModel)]="dekorater.ime" name="ime" required />
+  </div>
+
+  <div>
+    <label for="prezime">Prezime:</label>
+    <input type="text" id="prezime" [(ngModel)]="dekorater.prezime" name="prezime" required />
+  </div>
+
+  <div>
+    <label for="pol">Pol:</label>
+    <select id="pol" [(ngModel)]="dekorater.pol" name="pol">
+      <option value="M">Muško</option>
+      <option value="Z">Žensko</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="adresa">Adresa:</label>
+    <input type="text" id="adresa" [(ngModel)]="dekorater.adresa" name="adresa" required />
+  </div>
+
+  <div>
+    <label for="telefon">Telefon:</label>
+    <input type="text" id="telefon" [(ngModel)]="dekorater.telefon" name="telefon" required />
+    <div *ngIf="errorMessageTelefon">{{ errorMessageTelefon }}</div>
+  </div>
+
+  <div>
+    <label for="mejl">E-mail:</label>
+    <input type="email" id="mejl" [(ngModel)]="dekorater.mejl" name="mejl" required />
+    <div *ngIf="errorMessageMejl">{{ errorMessageMejl }}</div>
+  </div>
+
+  <div>
+    <label for="kreditnaKartica">Broj kreditne kartice:</label>
+    <input type="text" id="kreditnaKartica" [(ngModel)]="dekorater.kreditnaKartica" name="kreditnaKartica" (input)="validateCreditCard(dekorater.kreditnaKartica)" required />
+    <div *ngIf="errorMessageCardNumber">{{ errorMessageCardNumber }}</div>
+  </div>
+
+  <div *ngIf="cardType">
+    <img *ngIf="cardType === 'diners'" src="assets/diners.png" alt="Diners Club" width="80" />
+    <img *ngIf="cardType === 'mastercard'" src="assets/mastercard.png" alt="MasterCard" width="80" />
+    <img *ngIf="cardType === 'visa'" src="assets/visa.png" alt="Visa" width="80" />
+  </div>
+
+  <div>
+    <label for="profilnaSlika">Profilna slika:</label>
+    <input type="file" id="profilnaSlika" (change)="onFileSelected($event)" accept="image/*" />
+    <div *ngIf="errorMessageProfilePicture">{{ errorMessageProfilePicture }}</div>
+  </div>
+
+  <button type="submit" [disabled]="!korisnikForm.form.valid">Pošalji</button>
+</form>
+
+<br>
+
+<span *ngIf="errorMessageDuringLogin">{{ errorMessageDuringLogin }}</span>

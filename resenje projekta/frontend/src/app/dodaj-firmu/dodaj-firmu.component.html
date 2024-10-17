@@ -1,0 +1,84 @@
+<h2>Kreiranje nove firme</h2>
+
+<form (ngSubmit)="onSubmit()" #korisnikForm="ngForm">
+  <div>
+    <label for="naziv">Naziv firme:</label>
+    <input type="text" name="naziv" id="naziv" [(ngModel)]="firma.naziv" required>
+  </div>
+
+  <div>
+    <label for="adresa">Adresa firme:</label>
+    <input type="text" name="adresa" id="adresa" [(ngModel)]="firma.adresa" required>
+  </div>
+
+  <div>
+    <label for="ime">Ime kontakt osobe:</label>
+    <input type="text" name="ime" id="ime" [(ngModel)]="firma.kontaktOsobaIme" required>
+  </div>
+
+  <div>
+    <label for="prezime">Prezime kontakt osobe:</label>
+    <input type="text" name="prezime" id="prezime" [(ngModel)]="firma.kontaktOsobaPrezime" required>
+  </div>
+
+  <div>
+    <label for="telefon">Telefon kontakt osobe:</label>
+    <input type="text" name="telefon" id="telefon" [(ngModel)]="firma.kontaktOsobaTelefon" required>
+  </div>
+
+  <div>
+    <label for="pocetakGodisnjeg">Početak godišnjeg:</label>
+    <input type="text" name="pocetakGodisnjeg" [(ngModel)]="datumPocetakGodisnjeg" required>
+    <label for="krajGodisnjeg">Kraj godišnjeg:</label>
+    <input type="text" name="krajGodisnjeg" [(ngModel)]="datumKrajGodisnjeg" required>
+  </div>
+
+  <button type="submit" [disabled]="!korisnikForm.form.valid">Završi</button>
+</form>
+
+<span *ngIf="error">{{error}}</span>
+
+<h3>Trenutni spisak usluga</h3>
+
+<div *ngIf="trenutneUsluge.length > 0; else nemaUsluga">
+  <ul *ngFor="let u of trenutneUsluge">
+    <li>{{u.naziv}} - {{u.cena}} din</li>
+  </ul>
+</div>
+
+<ng-template #nemaUsluga>Trenutno nema nijedna usluga</ng-template>
+
+<hr>
+
+<h3>Dodaj novu uslugu</h3>
+
+<div>
+  <label for="nazivUsluge">Naziv usluge:</label>
+  <input type="text" [(ngModel)]="nazivUsluge">
+</div>
+
+<div>
+  <label for="cenaUsluge">Cena usluge:</label>
+  <input type="text" [(ngModel)]="cenaUsluge">
+</div>
+
+<button (click)="dodajUslugu()">Dodaj uslugu</button>
+
+<h3>Dodeli dekoratere firmi</h3>
+<h4>Trenutni broj dekoratera u firmi: {{dekorateri.length}}</h4>
+
+<div *ngIf="slobodniDekorateri.length > 0; else nemaSlobodnihDekoratera">
+  <table>
+    <tr>
+      <th>Korisničko ime</th>
+    </tr>
+    <tr *ngFor="let d of slobodniDekorateri">
+      <td>{{d.korisnickoIme}}</td>
+      <td><button (click)="dodaj(d)">Dodaj</button></td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #nemaSlobodnihDekoratera>Nema slobodnih dekoratera</ng-template>
+
+<span *ngIf="errorDodajDekoratera">{{errorDodajDekoratera}}</span>

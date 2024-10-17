@@ -1,0 +1,16 @@
+
+<button [routerLink]="['/profilDekoratera']">Profil</button>  |    
+<button [routerLink]="['/zakazivanjaDekorater']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanjeDekorater']">Održavanja</button>  |
+<button [routerLink]="['/statistikaDekorater']">Statistika</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+
+<h3>Statistika</h3>
+
+
+<div class="stat-container">
+  <button class="stat-button" [routerLink]="['/graf1']">Graf 1</button>
+  <button class="stat-button" [routerLink]="['/graf2']">Graf 2</button>
+  <button class="stat-button" [routerLink]="['/graf3']">Graf 3</button>
+</div>

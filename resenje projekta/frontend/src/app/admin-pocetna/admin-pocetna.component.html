@@ -1,0 +1,93 @@
+
+<h3>spisak svih vlasnika</h3>
+
+<div *ngIf="vlasnici.length > 0; else nemaVlasnika">
+    <table>
+        <tr>
+            <th>korisnicko ime</th>
+        </tr>
+        <tr *ngFor="let v of vlasnici ">
+            <td>{{v.korisnickoIme}}</td>
+            <td>
+                <button (click)="azuriraj(v)">azuriraj</button>
+            </td>
+            <td>
+                <button (click)="deaktiviraj(v)">deaktiviraj</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<ng-template #nemaVlasnika>Nema vlasnika</ng-template>
+
+<hr>
+
+<h3>spisak svih dekoratera</h3>
+
+<div *ngIf="dekorateri.length > 0; else nemaVlasnika">
+    <table>
+        <tr>
+            <th>korisnicko ime</th>
+        </tr>
+        <tr *ngFor="let d of dekorateri ">
+            <td>{{d.korisnickoIme}}</td>
+            <td>
+                <button (click)="azuriraj(d)">azuriraj</button>
+            </td>
+            <td>
+                <button (click)="deaktiviraj(d)">deaktiviraj</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<ng-template #nemaVlasnika>Nema dekoratera</ng-template>
+
+<hr>
+
+<h3>spisak svih firmi</h3>
+
+<div *ngIf="firme.length > 0; else nemaFirmi">
+    <table>
+        <tr>
+            <th>naziv</th>
+        </tr>
+        <tr *ngFor="let f of firme ">
+            <td>{{f.naziv}}</td>
+        </tr>
+    </table>
+</div>
+<ng-template #nemaFirmi>Nema firmi</ng-template>
+
+<hr>
+
+<button (click)="dodajDekoratera()">dodaj novog dekoratera</button>
+
+<hr>
+
+<button (click)="dodajNovuFirmu()">dodaj novu firmu</button>
+
+<hr>
+
+
+<h3>korisnici koji cekaju na odobrenje registacije</h3>
+
+<div *ngIf="korisniciNaCekanju.length > 0; else nemaKorisnikaNaCekanju">
+    <table>
+        <tr>
+            <th>korisnicko ime</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let k of korisniciNaCekanju">
+            <td>{{k.korisnickoIme}}</td>
+            <td>
+                <button (click)="prihvatiZahtev(k)">prihvati</button>
+            </td>
+            <td>
+                <button (click)="odbijZahtev(k)">odbij</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<ng-template #nemaKorisnikaNaCekanju>Nema korisnika koji cekaju na registraciju</ng-template>

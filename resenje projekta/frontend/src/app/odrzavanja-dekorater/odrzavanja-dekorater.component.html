@@ -1,0 +1,36 @@
+<button [routerLink]="['/profilDekoratera']">Profil</button>  |    
+<button [routerLink]="['/zakazivanjaDekorater']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanjeDekorater']">Održavanja</button>  |
+<button [routerLink]="['/statistikaDekorater']">Statistika</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<h3>Trenutni zahtevi za održavanje vodenih površina</h3>
+
+<div *ngIf="zahteviZaServis.length > 0; else nemaZahteva">
+  <table>
+    <thead>
+      <tr>
+        <th>Vlasnik</th>
+        <th>Akcija</th>
+        <th>Zavrsetak</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let z of zahteviZaServis">
+        <td>{{z.korisnickoImeVlasnika}}</td>
+        <td>
+          <button (click)="prihvati()">Prihvati</button>
+          <button (click)="odbij(z)">Odbij</button>
+        </td>
+        <td *ngIf="prihvatiFlag">
+          Vreme završetka održavanja
+          <input type="datetime-local" [(ngModel)]="dateTimeValue" />
+          <button (click)="posalji(z)">Pošalji</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #nemaZahteva>
+  <span class="no-requests">Nema zahteva</span>
+</ng-template>

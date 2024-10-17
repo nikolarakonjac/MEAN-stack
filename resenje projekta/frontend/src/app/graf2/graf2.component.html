@@ -1,0 +1,6 @@
+<button [routerLink]="['/statistikaDekorater']">nazad</button> <h3>graf2</h3>
+
+<div *ngFor="let company of getCompanyNames(); let i = index">
+    <h3>{{ company }} - Job Distribution</h3>
+    <canvas #pieChart width="400" height="400"></canvas>
+</div>

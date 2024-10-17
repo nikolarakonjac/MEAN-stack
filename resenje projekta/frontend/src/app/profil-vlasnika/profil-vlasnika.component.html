@@ -1,0 +1,29 @@
+<!-- Navbar -->
+<button [routerLink]="['/']">Home</button>  |  
+<button [routerLink]="['/profilVlasnika']">Profil</button>  |  
+<button [routerLink]="['/firme']">Firme</button>  |
+<button [routerLink]="['/zakazivanja']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanje']">Održavanje</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<br><br>
+
+<!-- Profile Container -->
+<div class="profile-container">
+  <div class="profile-details">
+    <p><span>Ime:</span> {{ulogovaniKorisnik.ime}}</p>
+    <p><span>Prezime:</span> {{ulogovaniKorisnik.prezime}}</p>
+    <p><span>Adresa:</span> {{ulogovaniKorisnik.adresa}}</p>
+    <p><span>Mejl:</span> {{ulogovaniKorisnik.mejl}}</p>
+    <p><span>Kontakt telefon:</span> {{ulogovaniKorisnik.telefon}}</p>
+    <p><span>Broj kartice:</span> {{ulogovaniKorisnik.kreditnaKartica}}</p>
+  </div>
+
+  <div class="profile-image">
+    <p><span>Profilna slika:</span></p>
+    <img *ngIf="profilnaSlikaURL" [src]="profilnaSlikaURL" alt="Profilna Slika" width="150" height="150">
+    <img *ngIf="!ulogovaniKorisnik.profilnaSlika" [src]="defaultProfilePicturePath" alt="Default Profile Picture" width="150" height="150">
+  </div>
+
+  <button class="update-profile" (click)="azurirajProfil()">Ažuriraj profil</button>
+</div>

@@ -1,0 +1,19 @@
+<form>
+    <h2>Prijava na Sistem</h2>
+  
+    <!-- Username -->
+    <label for="korisnickoIme">Korisničko ime:</label>
+    <input type="text" id="korisnickoIme" name="korisnickoIme" [(ngModel)]="korisnickoIme">
+  
+    <!-- Password -->
+    <label for="lozinka">Lozinka:</label>
+    <input type="password" id="lozinka" name="lozinka" [(ngModel)]="lozinka">
+  
+    <!-- Error message -->
+    <span *ngIf="errorMessage">{{errorMessage}}</span>
+  
+    <!-- Buttons -->
+    <button (click)="prijavaNaSistem()">Prijava na sistem</button>
+    <button (click)="registrujNovogVlasnika()">Registruj se</button>
+    <button (click)="promenaLozinke()">Promena lozinke</button>
+  </form>

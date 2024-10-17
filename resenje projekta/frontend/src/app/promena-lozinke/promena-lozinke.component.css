@@ -1,0 +1,78 @@
+/* Form container styling */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling each form element group */
+  form div {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling labels */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  /* Styling text inputs and select dropdown */
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for input focus */
+  input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Styling the error messages */
+  span {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  /* Styling the submit button */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    form {
+      width: 90%;
+    }
+  }
+  

@@ -1,0 +1,43 @@
+<!-- Navbar -->
+<button [routerLink]="['/']">Home</button>  |  
+<button [routerLink]="['/profilVlasnika']">Profil</button>  |  
+<button [routerLink]="['/firme']">Firme</button>  |
+<button [routerLink]="['/zakazivanja']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanje']">Održavanje</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<!-- Page Header -->
+<h3>Trenutna zakazivanja</h3>
+
+<!-- Table for appointments -->
+<div *ngIf="zakazivanja.length > 0; else nemaZakazivanja">
+  <table>
+    <thead>
+      <tr>
+        <th>Datum Zakazivanja</th>
+        <th>Datum Radova</th>
+        <th>Naziv Firme</th>
+        <th>Komentar</th>
+        <th>Izabrane Usluge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let z of zakazivanja">
+        <td>{{z.datumZakazivanja.getFullYear()}}-{{z.datumZakazivanja.getMonth()+1}}-{{z.datumZakazivanja.getDate()}}</td>
+        <td>{{z.datumRadova.getFullYear()}}-{{z.datumRadova.getMonth()+1}}-{{z.datumRadova.getDate()}}</td>
+        <td>{{z.nazivFirme}}</td>
+        <td>{{z.opis}}</td>
+        <td>
+          <ul *ngFor="let u of z.izabraneUsluge">
+            <li>{{u}}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- No Appointments Message -->
+<ng-template #nemaZakazivanja>
+  <span class="no-appointments">Nema zakazivanja</span>
+</ng-template>

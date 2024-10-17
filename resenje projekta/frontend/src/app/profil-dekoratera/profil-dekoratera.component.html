@@ -1,0 +1,22 @@
+
+<button [routerLink]="['/profilDekoratera']">Profil</button>  |    
+<button [routerLink]="['/zakazivanjaDekorater']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanjeDekorater']">Održavanja</button>  |
+<button [routerLink]="['/statistikaDekorater']">Statistika</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+
+<div class="profile-info">
+  <p><label>Ime:</label> <span>{{ulogovaniKorisnik.ime}}</span></p>
+  <p><label>Prezime:</label> <span>{{ulogovaniKorisnik.prezime}}</span></p>
+  <p><label>Adresa:</label> <span>{{ulogovaniKorisnik.adresa}}</span></p>
+  <p><label>Mejl:</label> <span>{{ulogovaniKorisnik.mejl}}</span></p>
+  <p><label>Kontakt telefon:</label> <span>{{ulogovaniKorisnik.telefon}}</span></p>
+  <p><label>Broj kartice:</label> <span>{{ulogovaniKorisnik.kreditnaKartica}}</span></p>
+  
+  <p><label>Profilna slika:</label></p>
+  <img *ngIf="profilnaSlikaURL" [src]="profilnaSlikaURL" alt="Profilna Slika" width="150" height="150">
+  <img *ngIf="!ulogovaniKorisnik.profilnaSlika" [src]="defaultProfilePicturePath" alt="Default Profile Picture" width="150" height="150">
+
+  <button class="update-profile" (click)="azurirajProfil()">Ažuriraj profil</button>
+</div>

@@ -1,0 +1,54 @@
+<button [routerLink]="['/']">Home</button>  |  
+<button [routerLink]="['/profilVlasnika']">Profil</button>  |  
+<button [routerLink]="['/firme']">Firme</button>  |
+<button [routerLink]="['/zakazivanja']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanje']">Održavanje</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<h3>Spisak svih firmi</h3>
+
+<div>
+    <label for="searchNaziv">Pretraži firme po nazivu: </label>
+    <input type="text" id="searchNaziv" name="searchNaziv" [(ngModel)]="pretraziNazivFirmeParam">
+    <br>
+    <label for="searchAdresu">Pretraži firme po adresi: </label>
+    <input type="text" id="searchAdresu" name="searchAdresu" [(ngModel)]="pretraziAdresuFirmeParam">
+    <button type="button" (click)="pretrazi()">Pretraži</button>
+</div>
+
+<br>
+
+<div *ngIf="firme.length > 0; else nemaFirmi">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <button type="button" (click)="sortirajFirmeNeopadajucePoNazivu()">Sortiraj rastuće</button>
+                    <button type="button" (click)="sortirajFirmeNerastucePoNazivu()">Sortiraj opadajuće</button>
+                    Naziv
+                </th>
+                <th>
+                    <button type="button" (click)="sortirajFirmeNeopadajucePoAdresi()">Sortiraj rastuće</button>
+                    <button type="button" (click)="sortirajFirmeNerastucePoAdresi()">Sortiraj opadajuće</button>
+                    Adresa
+                </th>
+                <th>Angažovani dekorateri</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of firme">
+                <td (click)="otvoriDeteljeFirme(f)">{{f.naziv}}</td>
+                <td>{{f.adresa}}</td>
+                <td>
+                    <ul *ngFor="let d of f.dekorateri">
+                        <li>{{d.ime}} {{d.prezime}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #nemaFirmi>
+    Nema firmi
+</ng-template>

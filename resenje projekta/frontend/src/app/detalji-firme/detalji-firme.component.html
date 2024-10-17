@@ -1,0 +1,153 @@
+<button [routerLink]="['/']">Home</button>  |  
+<button [routerLink]="['/profilVlasnika']">Profil</button>  |  
+<button [routerLink]="['/firme']">Firme</button>  |
+<button [routerLink]="['/zakazivanja']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanje']">Održavanje</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<!-- Company Details -->
+<p>naziv: {{firma.naziv}}</p>
+<p>adresa: {{firma.adresa}}</p>
+<p>kontakt osoba: {{firma.kontaktOsobaIme}} {{firma.kontaktOsobaPrezime}}</p>
+<p>telefon: {{firma.kontaktOsobaTelefon}}</p>
+<p>godisnji: {{firma.pocetakGodisnjeg.getMonth()+1}}.{{firma.pocetakGodisnjeg.getDate()}} - {{firma.krajGodisnjeg.getMonth()+1}}.{{firma.krajGodisnjeg.getDate()}}</p>
+
+<!-- Services Section -->
+<h4>Usluge:</h4>
+<ul *ngFor="let u of firma.usluge">
+  <li>{{u.naziv}}: {{u.cena}} din</li>
+</ul>
+
+<!-- Garden Scheduling Section -->
+<h2>Zakazi Uredjivanje Baste</h2>
+<button (click)="zakaziUredjivanjeBaste()">Zakazi</button>
+
+<!-- Choose Garden Type -->
+<h3>Choose Garden Type</h3>
+<div>
+  <input type="radio" id="privatnaBasta" name="gardenType" [(ngModel)]="selectedGardenType" value="privatnaBasta">
+  <label for="privatnaBasta">Private Garden</label>
+
+  <input type="radio" id="bastaRestorana" name="gardenType" [(ngModel)]="selectedGardenType" value="bastaRestorana">
+  <label for="bastaRestorana">Restaurant Garden</label>
+</div>
+
+<!-- Upload JSON Section -->
+<h3>Upload Garden Schedule (JSON)</h3>
+<input type="file" (change)="onFileSelected($event)" accept=".json">
+<button (click)="onDrawButtonClick()">Draw Garden</button>
+<canvas #gardenCanvas width="500" height="500" style="border:1px solid #000;"></canvas>
+
+<!-- Step 1: Scheduling Form -->
+<div *ngIf="trenutniKorak == 1">
+  <h3>Step 1: Zakazi Uredjivanje Baste</h3>
+  <form [formGroup]="korak1Form">
+    <label for="dateTime">Datum i vreme:</label>
+    <input id="dateTime" type="datetime-local" formControlName="dateTime">
+    <div *ngIf="korak1Form.controls['dateTime'].invalid && korak1Form.controls['dateTime'].touched">
+      Datum i vreme su obavezni.
+    </div>
+
+    <label for="ukupnaKvadratura">Ukupna Kvadratura (m²):</label>
+    <input id="ukupnaKvadratura" type="number" formControlName="ukupnaKvadratura">
+    <div *ngIf="korak1Form.controls['ukupnaKvadratura'].invalid && korak1Form.controls['ukupnaKvadratura'].touched">
+      Ukupna kvadratura je obavezna i mora biti pozitivan broj.
+    </div>
+
+    <label>Tip Baste:</label>
+    <input type="radio" id="privatnaBasta" formControlName="bastaType" value="privatnaBasta">
+    <label for="privatnaBasta">Privatna Basta</label>
+    
+    <input type="radio" id="bastaRestorana" formControlName="bastaType" value="bastaRestorana">
+    <label for="bastaRestorana">Basta Restorana</label>
+
+    <div *ngIf="korak1Form.controls['bastaType'].invalid && korak1Form.controls['bastaType'].touched">
+      Molimo izaberite tip baste.
+    </div>
+
+    <button (click)="nextStep()" [disabled]="korak1Form.invalid">Napred</button>
+  </form>
+</div>
+
+<!-- Step 2 for Private Garden -->
+<div *ngIf="trenutniKorak == 2 && tipIzabraneBaste === 'privatnaBasta' ">
+  <h3>Step 2: Biranje Baste</h3>
+  <form [formGroup]="korak2PrivatnaBastaForm">
+    <label for="kvadraturaPodBazenom">Kvadratura pod bazenom (m²):</label>
+    <input id="kvadraturaPodBazenom" type="number" formControlName="kvadraturaPodBazenom">
+
+    <label for="kvadraturaPodZelenilom">Kvadratura pod zelenilom (m²):</label>
+    <input id="kvadraturaPodZelenilom" type="number" formControlName="kvadraturaPodZelenilom">
+
+    <label for="kvadraturaPodLezaljkamaIStolovima">Kvadratura pod lezaljkama i stolovima (m²):</label>
+    <input id="kvadraturaPodLezaljkamaIStolovima" type="number" formControlName="kvadraturaPodLezaljkamaIStolovima">
+
+    <label for="opis">Opis:</label>
+    <textarea id="opis" formControlName="opis"></textarea>
+
+    <table>
+      <tr>
+        <th>Naziv</th>
+        <th>Cena</th>
+      </tr>
+      <tr *ngFor="let u of firma.usluge">
+        <td>{{u.naziv}}</td>
+        <td>{{u.cena}}</td>
+        <td><input type="checkbox" (change)="onCheckboxChange(u.naziv, $event)"></td>
+      </tr>
+    </table>
+
+    <button (click)="prevStep()">Nazad</button>
+    <button (click)="nextStep()" [disabled]="korak2PrivatnaBastaForm.invalid">Napred</button>
+  </form>
+</div>
+
+<!-- Step 2 for Restaurant Garden -->
+<div *ngIf="trenutniKorak == 2 && tipIzabraneBaste === 'bastaRestorana' ">
+  <h3>Step 2: Biranje Baste</h3>
+  <form [formGroup]="korak2BastaRestoranaForm">
+    <label for="kvadraturaPodFontanom">Kvadratura pod fontanom (m²):</label>
+    <input id="kvadraturaPodFontanom" type="number" formControlName="kvadraturaPodFontanom">
+
+    <label for="kvadraturaPodZelenilom">Kvadratura pod zelenilom (m²):</label>
+    <input id="kvadraturaPodZelenilom" type="number" formControlName="kvadraturaPodZelenilom">
+
+    <label for="brojStolova">Broj stolova:</label>
+    <input id="brojStolova" type="number" formControlName="brojStolova">
+
+    <label for="brojStolica">Broj stolica:</label>
+    <input id="brojStolica" type="number" formControlName="brojStolica">
+
+    <label for="opis">Opis:</label>
+    <textarea id="opis" formControlName="opis"></textarea>
+
+    <table>
+      <tr>
+        <th>Naziv</th>
+        <th>Cena</th>
+      </tr>
+      <tr *ngFor="let u of firma.usluge">
+        <td>{{u.naziv}}</td>
+        <td>{{u.cena}}</td>
+        <td><input type="checkbox" (change)="onCheckboxChange(u.naziv, $event)"></td>
+      </tr>
+    </table>
+
+    <button (click)="prevStep()">Nazad</button>
+    <button (click)="nextStep()" [disabled]="korak2BastaRestoranaForm.invalid">Napred</button>
+  </form>
+</div>
+
+<br>
+<br>
+<br>
+
+<!-- Final Step -->
+<div *ngIf="trenutniKorak == 3">
+  <button (click)="prevStep()">Nazad</button>
+  <button (click)="predajFormu()">Predaj formu</button>
+</div>
+
+<span class="error-message">{{errorKvadratiSeNeuklapaju}}</span>
+<span class="error-message">{{errorFirmaJeNaGodisnjem}}</span>
+<span *ngif="uspenoSlanje" style="color: orange;">uspesno ste zakazali</span>

@@ -1,0 +1,94 @@
+/* Navbar button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  /* Profile info section styling */
+  .profile-info {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile image styling */
+  .profile-info img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .profile-info label {
+    font-weight: bold;
+    color: #333;
+    display: inline-block;
+    width: 150px;
+  }
+  
+  /* Aligning labels and profile data */
+  .profile-info p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 16px;
+  }
+  
+  .profile-info p span {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  /* Button for updating the profile */
+  button.update-profile {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+  }
+  
+  button.update-profile:hover {
+    background-color: #0056b3;
+  }
+  
+  button.update-profile:active {
+    background-color: #004099;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .profile-info {
+      width: 90%;
+    }
+  
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

@@ -1,0 +1,68 @@
+<!-- Navbar -->
+<button [routerLink]="['/profilDekoratera']">Profil</button>  |    
+<button [routerLink]="['/zakazivanjaDekorater']">Zakazivanja</button>  |
+<button [routerLink]="['/odrzavanjeDekorater']">Održavanja</button>  |
+<button [routerLink]="['/statistikaDekorater']">Statistika</button>  |
+<button (click)="odjaviSe()">Odjavi se</button>
+
+<!-- Neobradjena Zakazivanja -->
+<div *ngIf="neobradjenaZakazivanjaZaFirmu.length > 0; else nemaNeobradjenihZakazivanja">
+  <table>
+    <thead>
+      <tr>
+        <th>Vlasnik</th>
+        <th>Firma</th>
+        <th>Datum Zakazivanja</th>
+        <th>Datum Radova</th>
+        <th>Akcija</th>
+        <th>Komentar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of neobradjenaZakazivanjaZaFirmu">
+        <td>{{x.korisnickoImeVlasnika}}</td>
+        <td>{{x.nazivFirme}}</td>
+        <td>{{x.datumZakazivanja.getFullYear()}}-{{x.datumZakazivanja.getMonth()+1}}-{{x.datumZakazivanja.getDate()}}</td>
+        <td>{{x.datumRadova.getFullYear()}}-{{x.datumRadova.getMonth()+1}}-{{x.datumRadova.getDate()}}</td>
+        <td>
+          <button (click)="potvrdiZakazivanje(x)">Potvrdi</button>
+          <button (click)="odbijZakazivanje()">Odbij</button>
+        </td>
+        <td *ngIf="UnosKomentaraFlag">
+          <textarea></textarea>
+          <button (click)="potvrdiOdbijanjeZahteva(x)">Pošalji</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #nemaNeobradjenihZakazivanja>Nema neobrađenih zakazivanja</ng-template>
+
+<!-- Prihvaćeni Poslovi -->
+<h3>Poslovi koje je dekorater prihvatio</h3>
+
+<div *ngIf="prihvaceniPoslovi.poslovi.length > 0; else nemaPrihvacenihPoslova">
+  <table>
+    <thead>
+      <tr>
+        <th>Vlasnik</th>
+        <th>Firma</th>
+        <th>Datum Zakazivanja</th>
+        <th>Datum Radova</th>
+        <th>Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of prihvaceniPoslovi.poslovi">
+        <td>{{p.korisnickoImeVlasnika}}</td>
+        <td>{{p.nazivFirme}}</td>
+        <td>{{p.datumZakazivanja.getFullYear()}}-{{p.datumZakazivanja.getMonth()+1}}-{{p.datumZakazivanja.getDate()}}</td>
+        <td>{{p.datumRadova.getFullYear()}}-{{p.datumRadova.getMonth()+1}}-{{p.datumRadova.getDate()}}</td>
+        <td>
+          <button (click)="zavrsiPosao(p)">Završi posao</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #nemaPrihvacenihPoslova>Nema prihvaćenih poslova</ng-template>
